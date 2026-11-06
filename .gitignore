@@ -17,3 +17,6 @@ ehthumbs_vista.db
 *.swp
 *.swo
 *~
+
+# Scripts
+upload_to_github.bat
