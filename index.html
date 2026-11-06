@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arindam Banerjee — Motion Designer</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+
+  <!-- Splash / Welcome Intro Screen (Loads main portfolio in background) -->
+  <div id="splash-overlay" role="dialog" aria-modal="true" aria-label="Welcome Screen">
+    <div class="splash-inner">
+      
+      <!-- Interactive Paper Airplanes Stage (Trimpath & Flickering Stars) -->
+      <div class="splash-stage" id="splash-stage" title="Click to launch into portfolio">
+        <svg class="splash-svg" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Glowing Runway Gradient -->
+            <linearGradient id="runway-glow-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="rgba(243, 233, 168, 0)" />
+              <stop offset="25%" stop-color="rgba(243, 233, 168, 0.45)" />
+              <stop offset="75%" stop-color="rgba(243, 233, 168, 0.45)" />
+              <stop offset="100%" stop-color="rgba(243, 233, 168, 0)" />
+            </linearGradient>
+
+            <!-- Ground Contact Shadow Blur -->
+            <filter id="ground-shadow-blur" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" />
+            </filter>
+          </defs>
+
+          <!-- Small Slowly Flickering Constellation Dots & Runway Stardust -->
+          <g class="splash-flicker-stars">
+            <!-- Runway micro-markers -->
+            <circle cx="45" cy="175" r="1.2" fill="#f3e9a8" class="star-flicker" style="--flicker-dur: 3.6s; --flicker-delay: 0s;" />
+            <circle cx="105" cy="175" r="0.9" fill="#ffffff" class="star-flicker" style="--flicker-dur: 4.8s; --flicker-delay: -1.2s;" />
+            <circle cx="160" cy="175" r="1.1" fill="#f3e9a8" class="star-flicker" style="--flicker-dur: 4.2s; --flicker-delay: -2.4s;" />
+            <circle cx="215" cy="175" r="0.9" fill="#ffffff" class="star-flicker" style="--flicker-dur: 5.1s; --flicker-delay: -0.7s;" />
+            <circle cx="275" cy="175" r="1.2" fill="#f3e9a8" class="star-flicker" style="--flicker-dur: 3.9s; --flicker-delay: -1.8s;" />
+            
+            <!-- Atmospheric night sky twinkles -->
+            <circle cx="68" cy="45" r="0.9" fill="#ffffff" class="star-flicker" style="--flicker-dur: 4.4s; --flicker-delay: -0.5s;" />
+            <circle cx="125" cy="22" r="1.1" fill="#f3e9a8" class="star-flicker" style="--flicker-dur: 5.6s; --flicker-delay: -2.1s;" />
+            <circle cx="195" cy="32" r="0.8" fill="#ffffff" class="star-flicker" style="--flicker-dur: 4.1s; --flicker-delay: -1.6s;" />
+            <circle cx="255" cy="60" r="1.2" fill="#f3e9a8" class="star-flicker" style="--flicker-dur: 4.9s; --flicker-delay: -3.0s;" />
+            <circle cx="295" cy="108" r="0.9" fill="#ffffff" class="star-flicker" style="--flicker-dur: 3.7s; --flicker-delay: -0.9s;" />
+            <circle cx="35" cy="105" r="1.0" fill="#f3e9a8" class="star-flicker" style="--flicker-dur: 5.2s; --flicker-delay: -2.8s;" />
+            <circle cx="90" cy="78" r="0.8" fill="#ffffff" class="star-flicker" style="--flicker-dur: 4.5s; --flicker-delay: -1.4s;" />
+            <circle cx="228" cy="82" r="1.0" fill="#f3e9a8" class="star-flicker" style="--flicker-dur: 4.0s; --flicker-delay: -2.2s;" />
+          </g>
+
+          <!-- Distant Cloud / Horizon Line -->
+          <line x1="20" y1="175" x2="300" y2="175" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />
+          
+          <!-- Runway Strip -->
+          <line x1="40" y1="175" x2="280" y2="175" stroke="url(#runway-glow-grad)" stroke-width="2" />
+          
+          <!-- Runway Dashed Center Marks -->
+          <line x1="60" y1="175" x2="260" y2="175" stroke="rgba(243, 233, 168, 0.35)" stroke-width="1.5" stroke-dasharray="10 14" />
+
+          <!-- Dynamic Ground Shadow (Synchronized with flight cycle) -->
+          <ellipse class="plane-ground-shadow" cx="160" cy="175" rx="15" ry="3.5" fill="rgba(0,0,0,0.7)" filter="url(#ground-shadow-blur)" />
+
+          <!-- Secondary High-Altitude Escort Plane (Smoothly fades in & out) -->
+          <g class="splash-escort-plane">
+            <g transform="scale(0.55)">
+              <polygon points="0,-18 -16,10 0,4" fill="#cfcfcf" />
+              <polygon points="0,-18 -5,10 0,4" fill="#a8a8a8" />
+              <polygon points="0,-18 5,10 0,4" fill="#eaeaea" />
+              <polygon points="0,-18 16,10 0,4" fill="#d5d5d5" />
+              <line x1="0" y1="-18" x2="0" y2="4" stroke="#f3e9a8" stroke-width="0.8" />
+            </g>
+          </g>
+        </svg>
+
+        <!-- Magical Trimpath & Stardust Contrail Canvas (Streams dynamically from plane's tail) -->
+        <canvas class="splash-trail-canvas" id="splash-trail-canvas" width="320" height="220"></canvas>
+
+        <!-- Primary Paper Airplane (Smooth Circular Motion Path) -->
+        <div class="splash-main-plane-wrap" id="splash-main-plane">
+          <svg class="splash-plane-svg" viewBox="-20 -20 40 40" xmlns="http://www.w3.org/2000/svg">
+            <g class="plane-origami-model">
+              <!-- Left Wing Outer -->
+              <polygon points="0,-18 -18,12 0,5" fill="#e2e2e2" />
+              <!-- Left Wing Fold Crease -->
+              <polygon points="0,-18 -5,12 0,5" fill="#b5b5b5" />
+              <!-- Right Wing Fold Crease -->
+              <polygon points="0,-18 5,12 0,5" fill="#fcfcfc" />
+              <!-- Right Wing Outer -->
+              <polygon points="0,-18 18,12 0,5" fill="#ececec" />
+              <!-- Center Spine Crease (Gold Accent) -->
+              <line x1="0" y1="-18" x2="0" y2="5" stroke="#f3e9a8" stroke-width="1.2" />
+              <!-- Wingtip Navigation Accents -->
+              <circle cx="-18" cy="12" r="1.3" fill="#f3e9a8" />
+              <circle cx="18" cy="12" r="1.3" fill="#f3e9a8" />
+            </g>
+          </svg>
+        </div>
+
+      </div>
+
+      <!-- Creator Identity -->
+      <h1 class="splash-name">Arindam Banerjee</h1>
+      <p class="splash-role">Motion Designer &amp; Animator</p>
+
+      <!-- Enter Portfolio Action Button -->
+      <button class="splash-enter-btn" id="splash-enter-btn" type="button">
+        <span>Welcome to my portfolio</span>
+        <svg class="splash-btn-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 10h12M11 5l5 5-5 5"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Desktop Sidebar / Mobile Topbar () -->
+  <aside class="sidebar">
+    <div class="sidebar-id">
+      <div class="avatar-glow-wrap">
+        <div class="avatar-photo">
+          <img src="asset/dp.png?v=1" alt="Arindam Banerjee" class="avatar-img" width="140" height="140" loading="eager">
+        </div>
+      </div>
+      <div class="name">Arindam Banerjee</div>
+      <div class="role"> Motion Designer</div>
+      
+      <div class="link-pill-row">
+        <span class="link-pill open-to-work">
+          <span class="dot"></span>Open to work
+        </span>
+      </div>
+      
+      <div class="local-time">
+        <span class="live-dot"></span>
+        <span id="sidebar-local-time">--:--:-- IST</span> &bull; West Bengal
+      </div>
+
+      <div class="icon-row">
+        <a class="icon-btn" href="https://www.linkedin.com/in/arindam-banerjee-25b109355/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a class="icon-btn" href="https://www.behance.net/arindambanerjee10" target="_blank" rel="noopener" title="Behance" aria-label="Behance">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h6a3 3 0 0 1 0 6H3V8z"/><path d="M3 14h6.5a3.5 3.5 0 0 1 0 7H3V14z"/><path d="M15 13h7a3.5 3.5 0 0 1-7 0v-1a3.5 3.5 0 0 1 7 0"/><line x1="16" y1="8" x2="21" y2="8"/></svg>
+        </a>
+        <a class="icon-btn email-popover-trigger" id="sidebar-mail-trigger" href="mailto:banerjee.clg@gmail.com" data-email="banerjee.clg@gmail.com" title="Email Arindam (banerjee.clg@gmail.com)" aria-label="Email Arindam">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Navigation Links with Sliding Pill -->
+    <nav id="sidebar-nav">
+      <span class="nav-slider" id="nav-slider"></span>
+      <a class="active" href="#top" id="nav-home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
+        Homepage
+      </a>
+      <a href="#projects" id="nav-projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Portfolio
+      </a>
+      <a href="#about" id="nav-about">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1-3.5 4-5.5 7-5.5s6 2 7 5.5"/></svg>
+        About
+      </a>
+    </nav>
+
+    <!-- Scroll Progress Rail -->
+    <div class="scroll-rail">
+      <div class="scroll-rail-fill" id="scroll-rail-fill"></div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <div class="main">
+
+    <!-- Hero Section with Reactive Grid Canvas -->
+    <div class="hero-outer" id="hero-outer">
+      <!-- Full-bleed Interactive Grid Canvas -->
+      <canvas id="hero-bg-canvas"></canvas>
+
+      <header class="hero wrap" id="top">
+        <h1 class="hero-headline">
+          <span class="line">Hi, I'm Arindam,</span>
+          <span class="line outline">I animate things</span>
+          <span class="line">for a living.</span>
+        </h1>
+
+        <div class="location">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>West Bengal, India</span>
+        </div>
+
+        <p class="bio">
+          freelance motion designer and animator with 2 years of experience animating for screens, built on a 5-year foundation in freelance graphic design. I handle projects from raw visual ideas straight through to the final render, focusing on clean 2D/3D motion and simple visual storytelling.
+        </p>
+
+        <div class="link-pill-row hero-actions">
+          <a class="link-pill primary" href="#projects">View Projects &darr;</a>
+          <a class="link-pill email-popover-trigger" id="hero-get-in-touch" href="mailto:banerjee.clg@gmail.com" data-email="banerjee.clg@gmail.com">Get In Touch</a>
+          <a class="link-pill" href="https://www.linkedin.com/in/arindam-banerjee-25b109355/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="link-pill" href="https://www.behance.net/arindambanerjee10" target="_blank" rel="noopener">Behance</a>
+        </div>
+
+        <div class="interaction-hint">
+          <span class="hint-icon">✦</span>
+                  </div>
+      </header>
+    </div>
+
+    <!-- Projects & Skills Marquee Container (Shared / Common between Hero & Projects) -->
+    <div class="projects-container" id="projects-container">
+      
+      <!-- Skills Marquee Banner (Continuous Endless Stream) -->
+      <div class="skills-marquee-outer">
+        <div class="skills-marquee-track" id="skills-marquee">
+          <!-- Primary Marquee Group -->
+          <div class="skills-marquee-group">
+            <span class="skill-word">Motion Design</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">2D Animation</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">SaaS Animation</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">3D Motion Design</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">Visual Storytelling</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">Typography</span>
+            <span class="skill-diamond">✦</span>
+
+            <span class="skill-word">Motion Design</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">2D Animation</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">SaaS Animation</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">3D Motion Design</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">Visual Storytelling</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">Typography</span>
+            <span class="skill-diamond">✦</span>
+
+            <span class="skill-word">Motion Design</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">2D Animation</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">SaaS Animation</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">3D Motion Design</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">Visual Storytelling</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">Typography</span>
+            <span class="skill-diamond">✦</span>
+          </div>
+
+          <!-- Secondary Marquee Group (Seamless Mirror for Infinite Conveyor) -->
+          <div class="skills-marquee-group" aria-hidden="true">
+            <span class="skill-word">Motion Design</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">2D Animation</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">SaaS Animation</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">3D Motion Design</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">Visual Storytelling</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">Typography</span>
+            <span class="skill-diamond">✦</span>
+
+            <span class="skill-word">Motion Design</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">2D Animation</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">SaaS Animation</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">3D Motion Design</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">Visual Storytelling</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">Typography</span>
+            <span class="skill-diamond">✦</span>
+
+            <span class="skill-word">Motion Design</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">2D Animation</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">SaaS Animation</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">3D Motion Design</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">Visual Storytelling</span>
+            <span class="skill-diamond">✦</span>
+            <span class="skill-word">Typography</span>
+            <span class="skill-diamond">✦</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Projects Section -->
+      <section class="wrap portfolio-section" id="projects">
+      <div class="section-head">
+        <h2>Selected Projects</h2>
+        <p class="muted"> </p>
+      </div>
+
+      <div class="projects-list">
+        <!-- Project 1 (Odd: Video Left, Text Right) -->
+        <article class="project-card" data-video="asset/gemini.mp4" data-poster="asset/gemini poster.jpg" data-title="SaaS animation">
+          <div class="card-video-wrap" title="Click to watch full video">
+            <div class="video-preview-box">
+              <video preload="metadata" playsinline muted loop poster="asset/gemini poster.jpg">
+                <source src="asset/gemini.mp4" type="video/mp4">
+              </video>
+              <img class="video-poster-overlay" src="asset/gemini poster.jpg" alt="SaaS animation poster" loading="lazy">
+              <div class="video-hover-badge">
+                <span class="badge-icon">▶</span>
+                <span>Click to expand</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">SaaS animation</h3>
+          </div>
+
+          <!-- Structured Case Study Content for Modal -->
+          <div class="project-explanation" hidden>
+            <div class="case-study-content">
+              <div class="case-badge">
+                <span class="badge-dot"></span>
+                <span>Motion System &bull; Case Study</span>
+              </div>
+
+              <h2 class="case-heading">AI Workflow Concept for Designers</h2>
+
+              <div class="case-section">
+                <h3 class="case-subheading">The Problem:</h3>
+                <p class="case-body">
+                  As a designer, I've noticed a huge bottleneck: bridging the gap between raw creative ideas and technical motion work. I wanted to build a concept for a SaaS tool that acts as a true creative co-pilot, helping designers move effortlessly from a blank page to production-ready animation.
+                </p>
+              </div>
+
+              <div class="case-section">
+                <h3 class="case-subheading">The Solution &amp; The 3-Part Workflow:</h3>
+                <ul class="case-phase-list">
+                  <li class="case-phase-card">
+                    <div class="phase-header">
+                      <span class="phase-number">01</span>
+                      <h4 class="phase-title">Phase 1: Intelligent Brainstorming &amp; Concept Mapping</h4>
+                    </div>
+                    <div class="phase-points">
+                      <p><strong>What it does:</strong> Acts as a creative co-pilot to help designers quickly map out motion themes, moodboards, and narrative arcs before touching any design software.</p>
+                      <p><strong>Why I included it:</strong> Shows that good motion design starts well before keyframing—it starts with structured strategic thinking.</p>
+                    </div>
+                  </li>
+
+                  <li class="case-phase-card">
+                    <div class="phase-header">
+                      <span class="phase-number">02</span>
+                      <h4 class="phase-title">Phase 2: Context-Aware Image Generation</h4>
+                    </div>
+                    <div class="phase-points">
+                      <p><strong>What it does:</strong> Generates style-consistent visual assets and vector layouts tailored for UI animation right inside the workspace.</p>
+                      <p><strong>Why I included it:</strong> Highlights the ability to integrate modern AI generation tools directly into a designer’s asset-creation workflow without losing brand or stylistic consistency.</p>
+                    </div>
+                  </li>
+
+                  <li class="case-phase-card">
+                    <div class="phase-header">
+                      <span class="phase-number">03</span>
+                      <h4 class="phase-title">Phase 3: Automated Code &amp; Expression Generation for After Effects</h4>
+                    </div>
+                    <div class="phase-points">
+                      <p><strong>What it does:</strong> Automatically writes complex expressions and code snippets needed to bring the motion to life in Adobe After Effects, cutting down tedious manual scripting.</p>
+                      <p><strong>Why I included it:</strong> Directly solves a major technical bottleneck for designers who have great visual ideas but get bogged down by complex expression syntax.</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="case-section">
+                <h3 class="case-subheading">The Design &amp; Animation Process</h3>
+                <ul class="case-process-list">
+                  <li class="case-process-item">
+                    <strong>Storyboarding &amp; Flow:</strong>
+                    <span>I started by sketching out some quick wireframes and mapping user flows on paper to figure out how a designer would naturally move from a wild idea all the way to exporting the final piece.</span>
+                  </li>
+                  <li class="case-process-item">
+                    <strong>UI/UX Design:</strong>
+                    <span>I designed a sleek, dark-mode interface in Adobe Illustrator, using high-contrast accents (inspired by Gemini's look) to guide the eye naturally through each AI step.</span>
+                  </li>
+                  <li class="case-process-item">
+                    <strong>Motion &amp; Execution:</strong>
+                    <span>Brought the UI to life with smooth, purposeful micro-interactions, eased keyframing, and sleek transitions in after effects to demonstrate the exact product experience .</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 (Even: Text Left, Video Right) -->
+        <article class="project-card flip" data-video="asset/redbull.mp4" data-poster="asset/redbull postrr.jpg" data-title="Minimalist commercial">
+          <div class="card-content">
+            <h3 class="card-title">Minimalist commercial</h3>
+          </div>
+          <div class="card-video-wrap" title="Click to watch full video">
+            <div class="video-preview-box">
+              <video preload="metadata" playsinline muted loop poster="asset/redbull postrr.jpg">
+                <source src="asset/redbull.mp4" type="video/mp4">
+              </video>
+              <img class="video-poster-overlay" src="asset/redbull postrr.jpg" alt="Minimalist commercial poster" loading="lazy">
+              <div class="video-hover-badge">
+                <span class="badge-icon">▶</span>
+                <span>Click to expand</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Structured Case Study Content for Modal -->
+          <div class="project-explanation" hidden>
+            <div class="case-study-content">
+              <div class="case-badge">
+                <span class="badge-dot"></span>
+                <span>Commercial Motion &bull; Case Study</span>
+              </div>
+
+              <h2 class="case-heading">Red Bull : Minimalistic Commercial </h2>
+
+              <div class="case-section">
+                <h3 class="case-subheading">The Concept</h3>
+                <p class="case-body">
+                  Red Bull ads are known for their classic, wobbly hand-drawn cartoon style. I wanted to break away from that and try a fresh, modern approach: a short, punchy motion piece that takes their famous "gives you wiiings" tagline literally, using a beam of heavenly light and a touch of humor.
+                </p>
+              </div>
+
+              <div class="case-section">
+                <h3 class="case-subheading">Process &amp; Breakdown</h3>
+                <ul class="case-phase-list">
+                  <li class="case-phase-card">
+                    <div class="phase-header">
+                      <span class="phase-number">01</span>
+                      <h4 class="phase-title">Asset Creation &amp; Prep</h4>
+                    </div>
+                    <div class="phase-points">
+                      <ul class="phase-bullet-list">
+                        <li>Generated the initial can visual using Google Gemini.</li>
+                        <li>Brought it into Adobe Illustrator to clean up edges, redraw details, and prep all layers for animation.</li>
+                      </ul>
+                    </div>
+                  </li>
+
+                  <li class="case-phase-card">
+                    <div class="phase-header">
+                      <span class="phase-number">02</span>
+                      <h4 class="phase-title">Motion &amp; Animation (After Effects)</h4>
+                    </div>
+                    <div class="phase-points">
+                      <ul class="phase-bullet-list">
+                        <li>Animated the can dropping in with realistic weight, bounce, and a settling wobble next to the logo.</li>
+                        <li>Cut to a dark background with a downward beam of heaven light focusing right on the can.</li>
+                        <li>Shot the can upward into the light using steep speed graph acceleration, pulling the vertical tagline up with it.</li>
+                      </ul>
+                    </div>
+                  </li>
+
+                  <li class="case-phase-card">
+                    <div class="phase-header">
+                      <span class="phase-number">03</span>
+                      <h4 class="phase-title">Sound Design (Premiere Pro)</h4>
+                    </div>
+                    <div class="phase-points">
+                      <ul class="phase-bullet-list">
+                        <li>Handled the final audio pass in Adobe Premiere Pro.</li>
+                        <li>Synced a heavenly choir sound effect to the exact moment the light appears and the can launches upward.</li>
+                   
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 (Odd: Video Left, Text Right) -->
+        <article class="project-card" data-video="asset/cube.mp4" data-poster="asset/cube poster.jpg" data-title="3d animation">
+          <div class="card-video-wrap" title="Click to watch full video">
+            <div class="video-preview-box">
+              <video preload="metadata" playsinline muted loop poster="asset/cube poster.jpg">
+                <source src="asset/cube.mp4" type="video/mp4">
+              </video>
+              <img class="video-poster-overlay" src="asset/cube poster.jpg" alt="3d animation poster" loading="lazy">
+              <div class="video-hover-badge">
+                <span class="badge-icon">▶</span>
+                <span>Click to expand</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">3d animation</h3>
+          </div>
+
+          <!-- Structured Case Study Content for Modal -->
+          <div class="project-explanation" hidden>
+            <div class="case-study-content">
+              <div class="case-badge">
+                <span class="badge-dot"></span>
+                <span>3D Motion &bull; Case Study</span>
+              </div>
+
+              <h2 class="case-heading">Speed Cube: Native 3D Study</h2>
+
+              <div class="case-section">
+                <h3 class="case-subheading">Overview</h3>
+                <p class="case-body">
+                  This was one of my early projects, created to test how far I could push 3D directly inside Adobe After Effects without using external 3D software. Building and manipulating 3D objects natively in After Effects is tricky, so the goal here was simply to learn how native layers, extrusions, and scene lighting interact.
+                </p>
+              </div>
+
+              <div class="case-section">
+                <h3 class="case-subheading">What I Did</h3>
+                <ul class="case-process-list">
+                  <li class="case-process-item">
+                    <strong>Built in 3D:</strong>
+                    <span>Created the Rubik's cube and the orbiting text ring using only native After Effects 3D layers.</span>
+                  </li>
+                  <li class="case-process-item">
+                    <strong>Layer Twisting:</strong>
+                    <span>Set up the cube parts to rotate on different axes like a real puzzle cube.</span>
+                  </li>
+                  <li class="case-process-item">
+                    <strong>Tested Lighting:</strong>
+                    <span>Added native lights to see how reflections and colored glows hit the moving surfaces.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4 (Even: Text Left, Video Right) -->
+        <article class="project-card flip" data-video="asset/krit media.mp4" data-poster="asset/krit media poster.jpg" data-title="logo animation">
+          <div class="card-content">
+            <h3 class="card-title">logo animation</h3>
+          </div>
+          <div class="card-video-wrap" title="Click to watch full video">
+            <div class="video-preview-box">
+              <video preload="metadata" playsinline muted loop poster="asset/krit media poster.jpg">
+                <source src="asset/krit media.mp4" type="video/mp4">
+              </video>
+              <img class="video-poster-overlay" src="asset/krit media poster.jpg" alt="logo animation poster" loading="lazy">
+              <div class="video-hover-badge">
+                <span class="badge-icon">▶</span>
+                <span>Click to expand</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Structured Case Study Content for Modal -->
+          <div class="project-explanation" hidden>
+            <div class="case-study-content">
+              <div class="case-badge">
+                <span class="badge-dot"></span>
+                <span>Brand Identity &bull; Case Study</span>
+              </div>
+
+              <h2 class="case-heading">Krit Media: Dynamic Logo Reveal</h2>
+
+              <div class="case-section">
+                <h3 class="case-subheading">The Brief</h3>
+                <div class="case-brief-tags">
+                  <span class="brief-tag">Dynamic</span>
+                  <span class="brief-tag">Modern</span>
+                  <span class="brief-tag">Focused</span>
+                </div>
+              </div>
+
+              <div class="case-section">
+                <h3 class="case-subheading">The Concept</h3>
+                <p class="case-body">
+                  The core identity centers on the orange dot serving as both a spark of focus and the link between "Krit" and "Media". Rather than a static reveal, I wanted a short, punchy ident where a single moving spark of light triggers the entire brand lockup into place.
+                </p>
+              </div>
+
+              <div class="case-section">
+                <h3 class="case-subheading">What I Did</h3>
+                <ul class="case-process-list">
+                  <li class="case-process-item">
+                    <strong>The Hook:</strong>
+                    <span>Started with an orange dot zipping across the dark screen to grab attention right away.</span>
+                  </li>
+                  <li class="case-process-item">
+                    <strong>Building the Core:</strong>
+                    <span>Swung the central white bar around and snapped it straight into place to form the shared "i".</span>
+                  </li>
+                  <li class="case-process-item">
+                    <strong>The Full Reveal:</strong>
+                    <span>Used the shockwave from that snap to kick out the rest of the letters and finish the lockup.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 5 (Odd: Video Left, Text Right) -->
+        <article class="project-card" data-video="asset/winter.mp4" data-poster="asset/winter poster.jpg" data-title="Code-based motion">
+          <div class="card-video-wrap" title="Click to watch full video">
+            <div class="video-preview-box">
+              <video preload="metadata" playsinline muted loop poster="asset/winter poster.jpg">
+                <source src="asset/winter.mp4" type="video/mp4">
+              </video>
+              <img class="video-poster-overlay" src="asset/winter poster.jpg" alt="Code-based motion poster" loading="lazy">
+              <div class="video-hover-badge">
+                <span class="badge-icon">▶</span>
+                <span>Click to expand</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Code-based motion</h3>
+          </div>
+
+          <!-- Structured Case Study Content for Modal -->
+          <div class="project-explanation" hidden>
+            <div class="case-study-content">
+              <div class="case-badge">
+                <span class="badge-dot"></span>
+                <span>Proximity Motion &bull; Case Study</span>
+              </div>
+
+              <h2 class="case-heading">Warmth: Proximity Motion </h2>
+
+              <div class="case-section">
+                <h3 class="case-subheading">Overview</h3>
+                <p class="case-body">
+                  An early project exploring expression-based automation instead of manual keyframing. I wanted to see how distance and proximity code could drive character behaviors and lighting in a clean grid layout.
+                </p>
+              </div>
+
+              <div class="case-section">
+                <h3 class="case-subheading">What I Did</h3>
+                <ul class="case-process-list">
+                  <li class="case-process-item">
+                    <strong>Proximity Expressions:</strong>
+                    <span>Used proximity code so each character’s expression, smile, and head tilt automatically trigger whenever the glowing warm orb gets close.</span>
+                  </li>
+                  <li class="case-process-item">
+                    <strong>Dynamic Shadows:</strong>
+                    <span>Created the cast shadows using Fast Box Blur, rigging the anchor point and stretch direction directly to the light orb’s position.</span>
+                  </li>
+                  <li class="case-process-item">
+                    <strong>Face Glow:</strong>
+                    <span>Added an inner glow to each face that intensifies as the warm light approaches to simulate surface bounce.</span>
+                  </li>
+                  <li class="case-process-item">
+                    <strong>Choreographed Path:</strong>
+                    <span>Keyframed the light orb to weave smoothly through the rows, testing how multiple neighboring layers react at varying distances.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 6 (Even: Text Left, Video Right) -->
+        <article class="project-card flip" data-video="asset/ball.mp4" data-poster="asset/ball poster.jpg" data-title="Loop animation" data-modal-loop="true">
+          <div class="card-content">
+            <h3 class="card-title"> Loop Animation </h3>
+          </div>
+          <div class="card-video-wrap" title="Click to watch full video">
+            <div class="video-preview-box">
+              <video preload="metadata" playsinline muted loop poster="asset/ball poster.jpg">
+                <source src="asset/ball.mp4" type="video/mp4">
+              </video>
+              <img class="video-poster-overlay" src="asset/ball poster.jpg" alt="Drain poster" loading="lazy">
+              <div class="video-hover-badge">
+                <span class="badge-icon">▶</span>
+                <span>Click to expand</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Structured Case Study Content for Modal -->
+          <div class="project-explanation" hidden>
+            <div class="case-study-content">
+              <div class="case-badge">
+                <span class="badge-dot"></span>
+                <span>Kinetic Loop &bull; Case Study</span>
+              </div>
+
+              <h2 class="case-heading">Drain: Kinetic Loop </h2>
+
+              <div class="case-section">
+                <h3 class="case-subheading">The Concept</h3>
+                <p class="case-body">
+                  A visual metaphor exploring burnout—how surrounding demands steadily drain our focus and energy until nothing is left. I wanted to translate that feeling into motion: a glowing, vibrant core that gradually loses its color and luminance as orbiting particles pull momentum and life away from it, eventually leaving it hollow and dim.
+                </p>
+              </div>
+
+              <div class="case-section">
+                <h3 class="case-subheading">What I Did</h3>
+                <ul class="case-process-list">
+                  <li class="case-process-item">
+                    <strong>Elastic Surface Impact:</strong>
+                    <span>Animated the orb dropping into a pliable floor plane, creating an elastic rebound to establish initial energy and weight.</span>
+                  </li>
+                  <li class="case-process-item">
+                    <strong>Energy Drain Cycle:</strong>
+                    <span>Built a color and luminescence shift where the bright blue core turns dull and neutral, transferring its glow to the surrounding dots as they circle.</span>
+                  </li>
+                  <li class="case-process-item">
+                    <strong>Choreographed Satellites:</strong>
+                    <span>Rigged orbiting particles to fan out and snap inward, mimicking external pressures feeding off the main core.</span>
+                  </li>
+                  <li class="case-process-item">
+                    <strong>Continuous Cycle:</strong>
+                    <span>Tuned easing curves so the drain and reset flow seamlessly back into the loop.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+    <!-- About Section with Interactive Grid Lattice & Funky Polaroids -->
+    <div class="about-outer" id="about-outer">
+      <!-- Full-bleed Interactive Grid Canvas for About Section -->
+      <canvas id="about-bg-canvas"></canvas>
+
+      <section class="wrap about-section" id="about">
+        <div class="about-grid">
+          
+          <!-- Storytelling Narrative Column -->
+          <div class="about-content">
+            <div class="section-badge">
+              <span class="badge-dot"></span>
+              <span>About Me</span>
+            </div>
+
+            <h2 class="about-heading">A little about myself</h2>
+
+            <div class="about-body">
+              <p class="about-p lead">
+                My journey into design started back in the 9th grade. Looking back, those early designs weren’t great, but by 10th grade, I had taken on my first real gig—handling social media creatives for my brother’s small business alongside local design projects. I kept freelancing all through design school, building up five solid years of groundwork in layout, typography, and visual communication.
+              </p>
+
+              <p class="about-p">
+                I always wanted things to move, though. I experimented with animation for years on the side, but about two years ago, I committed to it professionally as a full-time freelance motion designer and animator. Today, I focus on clean motion that solves visual problems simply.
+              </p>
+
+              <p class="about-p">
+                Off the clock, I’m pretty disciplined and quietly routine-driven: if I’m not glued to my desk working through keyframes, you’ll usually find me at the gym.
+              </p>
+            </div>
+
+            <!-- Milestone / Attribute Chips -->
+            <div class="about-chips">
+              <div class="about-chip">
+                <span class="chip-number">5+</span>
+                <span class="chip-label">Years Design Groundwork</span>
+              </div>
+              <div class="about-chip">
+                <span class="chip-number">2+</span>
+                <span class="chip-label">Years Full-Time Motion</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Funky Polaroid Photos Column (2 Photos Stack) -->
+          <div class="about-polaroid-gallery" aria-label="Personal Polaroid photos">
+            <div class="polaroid-cluster">
+              
+              <!-- Polaroid 1: Arindam (Tilted Left) -->
+              <div class="polaroid-card polaroid-1" tabindex="0">
+                <div class="polaroid-tape"></div>
+                <div class="polaroid-inner">
+                  <img src="asset/about-photo-1.png?v=1792271470588" alt="Arindam Banerjee" loading="lazy">
+                </div>
+              </div>
+
+              <!-- Polaroid 2: Gym Routine (Tilted Right) -->
+              <div class="polaroid-card polaroid-2" tabindex="0">
+                <div class="polaroid-tape"></div>
+                <div class="polaroid-inner">
+                  <img src="asset/about-photo-2.png" alt="Off the clock routine - Gym" loading="lazy">
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Tools Section on the Grid -->
+          <div class="about-tools-wrap" id="about-tools-wrap">
+            <div class="tools-heading-row">
+              <span class="tools-heading">Tools</span>
+            </div>
+
+            <!-- Tools Bar: Monochromatic Badges on the Grid with Grayscale Hoop -->
+            <div class="about-tools-bar" id="about-tools-bar" aria-label="Creative Tools">
+              <!-- Grayscale Celebration Particles Canvas -->
+              <canvas class="tools-fx-canvas" id="tools-fx-canvas"></canvas>
+
+            <!-- Tools Pill Badges (Logos Only, No Text - Ae & Pr First) -->
+            <div class="tools-badges-list" id="tools-badges-list">
+              <!-- 1. After Effects -->
+              <div class="tool-pill-slot" data-tool="ae">
+                <div class="tool-pill-badge" id="tool-pill-ae" role="button" tabindex="0" title="Adobe After Effects (Drag &amp; drop into hoop)" aria-label="Adobe After Effects">
+                  <span class="mono-symbol">Ae</span>
+                </div>
+              </div>
+
+              <!-- 2. Premiere Pro -->
+              <div class="tool-pill-slot" data-tool="pr">
+                <div class="tool-pill-badge" id="tool-pill-pr" role="button" tabindex="0" title="Adobe Premiere Pro (Drag &amp; drop into hoop)" aria-label="Adobe Premiere Pro">
+                  <span class="mono-symbol">Pr</span>
+                </div>
+              </div>
+
+              <!-- 3. Illustrator -->
+              <div class="tool-pill-slot" data-tool="ai">
+                <div class="tool-pill-badge" id="tool-pill-ai" role="button" tabindex="0" title="Adobe Illustrator (Drag &amp; drop into hoop)" aria-label="Adobe Illustrator">
+                  <span class="mono-symbol">Ai</span>
+                </div>
+              </div>
+
+              <!-- 4. Photoshop -->
+              <div class="tool-pill-slot" data-tool="ps">
+                <div class="tool-pill-badge" id="tool-pill-ps" role="button" tabindex="0" title="Adobe Photoshop (Drag &amp; drop into hoop)" aria-label="Adobe Photoshop">
+                  <span class="mono-symbol">Ps</span>
+                </div>
+              </div>
+
+              <!-- 5. Gemini AI -->
+              <div class="tool-pill-slot" data-tool="gemini">
+                <div class="tool-pill-badge" id="tool-pill-gemini" role="button" tabindex="0" title="Gemini AI (Drag &amp; drop into hoop)" aria-label="Gemini AI">
+                  <svg viewBox="0 0 24 24" class="pill-svg-icon" fill="currentColor">
+                    <path d="M12 2C12 7.52 7.52 12 2 12C7.52 12 12 16.48 12 22C12 16.48 16.48 12 22 12C16.48 12 12 7.52 12 2Z"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- 6. Claude AI (Official Anthropic Starburst) -->
+              <div class="tool-pill-slot" data-tool="claude">
+                <div class="tool-pill-badge" id="tool-pill-claude" role="button" tabindex="0" title="Claude AI (Drag &amp; drop into hoop)" aria-label="Claude AI">
+                  <svg viewBox="0 0 24 24" class="pill-svg-icon" fill="currentColor">
+                    <path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.5426Z"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- 7. ChatGPT (Official OpenAI Rosette) -->
+              <div class="tool-pill-slot" data-tool="chatgpt">
+                <div class="tool-pill-badge" id="tool-pill-chatgpt" role="button" tabindex="0" title="ChatGPT (Drag &amp; drop into hoop)" aria-label="ChatGPT">
+                  <svg viewBox="0 0 24 24" class="pill-svg-icon" fill="currentColor">
+                    <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.5045 4.5045 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Grayscale Basketball Hoop on Extreme Right -->
+            <div class="about-hoop-station" id="about-hoop-station" aria-label="Basketball Hoop">
+              <div class="hoop-backboard-mono">
+                <div class="backboard-glass-mono">
+                  <div class="backboard-target-mono"></div>
+                </div>
+              </div>
+              <div class="hoop-rim-mono-assembly" id="hoop-rim-mono-assembly">
+                <div class="hoop-rim-mono-bracket"></div>
+                <div class="hoop-rim-mono" id="hoop-rim-mono"></div>
+                <div class="hoop-net-mono-wrap" id="hoop-net-mono-wrap">
+                  <svg class="hoop-net-mono-svg" id="hoop-net-mono-svg" viewBox="0 0 100 110" preserveAspectRatio="none">
+                    <g stroke="rgba(255,255,255,0.72)" stroke-width="2.2" stroke-linecap="round" fill="none">
+                      <path d="M 10,0 C 12,25 22,55 30,105"/>
+                      <path d="M 26,0 C 27,25 34,55 38,105"/>
+                      <path d="M 42,0 C 42,25 45,55 46,105"/>
+                      <path d="M 58,0 C 58,25 55,55 54,105"/>
+                      <path d="M 74,0 C 73,25 66,55 62,105"/>
+                      <path d="M 90,0 C 88,25 78,55 70,105"/>
+                      <path d="M 10,18 C 30,23 70,23 90,18"/>
+                      <path d="M 14,40 C 32,46 68,46 86,40"/>
+                      <path d="M 20,65 C 35,71 65,71 80,65"/>
+                      <path d="M 26,88 C 38,93 62,93 74,88"/>
+                      <path d="M 30,105 C 40,108 60,108 70,105"/>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div class="hoop-mono-burst-anchor" id="hoop-mono-burst-anchor"></div>
+            </div>
+
+          </div>
+        </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- Contact & Interactive Note Wall Section -->
+    <section class="wrap contact-section" id="contact">
+      
+      <!-- Pure, Clean Full-Screen Finale Screen -->
+      <div class="contact-hero-screen" id="contact-hero-screen">
+        
+        <!-- Interactive Paper Airplanes Flight Zone -->
+        <div class="airplanes-stage" id="airplanes-stage" aria-hidden="true">
+          <canvas id="airplanes-canvas" class="airplanes-canvas"></canvas>
+
+          <!-- Paper Plane 1 (Apex Cruiser) -->
+          <div class="paper-plane" id="paper-plane-1" role="button" tabindex="0" title="Click to loop stunt, drag to flick & throw!" aria-label="Interactive Paper Airplane 1">
+            <div class="plane-body">
+              <svg viewBox="0 0 54 54" class="plane-svg" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="plane-glow-1" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="rgba(0,0,0,0.5)"/>
+                  </filter>
+                </defs>
+                <g filter="url(#plane-glow-1)">
+                  <polygon points="27,6 8,44 27,35" fill="#e8e8e8" />
+                  <polygon points="27,6 23,44 27,35" fill="#bebebe" />
+                  <line x1="27" y1="6" x2="27" y2="45" stroke="#f3e9a8" stroke-width="1.8" stroke-linecap="round" />
+                  <polygon points="27,6 31,44 27,35" fill="#d4d4d4" />
+                  <polygon points="27,6 46,44 27,35" fill="#ffffff" />
+                  <polygon points="27,6 23,16 31,16" fill="#f3e9a8" />
+                </g>
+              </svg>
+              <span class="plane-hint">flick me ✦</span>
+            </div>
+          </div>
+
+          <!-- Paper Plane 2 (Wingman Glider) -->
+          <div class="paper-plane" id="paper-plane-2" role="button" tabindex="0" title="Click to loop stunt, drag to flick & throw!" aria-label="Interactive Paper Airplane 2">
+            <div class="plane-body">
+              <svg viewBox="0 0 54 54" class="plane-svg" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="plane-glow-2" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="rgba(0,0,0,0.5)"/>
+                  </filter>
+                </defs>
+                <g filter="url(#plane-glow-2)">
+                  <polygon points="27,6 8,44 27,35" fill="#dfdfdf" />
+                  <polygon points="27,6 23,44 27,35" fill="#b4b4b4" />
+                  <line x1="27" y1="6" x2="27" y2="45" stroke="#f3e9a8" stroke-width="1.8" stroke-linecap="round" />
+                  <polygon points="27,6 31,44 27,35" fill="#cacaca" />
+                  <polygon points="27,6 46,44 27,35" fill="#f7f7f7" />
+                  <polygon points="8,44 14,39 17,44" fill="#f3e9a8" />
+                  <polygon points="46,44 40,39 37,44" fill="#f3e9a8" />
+                </g>
+              </svg>
+              <span class="plane-hint">flick me ✦</span>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="contact-headline">
+          <span class="line">Let’s design</span>
+          <span class="line line-nowrap"><span class="outline">incredible work</span> together.</span>
+        </h2>
+
+        <!-- Action Deck: Copy Email & Download CV (Center Aligned) -->
+        <div class="contact-actions-deck">
+          <button type="button" class="contact-btn email-copy-pill" id="email-copy-pill" title="Click to copy banerjee.clg@gmail.com" aria-label="Copy email address banerjee.clg@gmail.com">
+            <span class="email-dot"></span>
+            <span class="email-val" id="email-address-text">banerjee.clg@gmail.com</span>
+            <span class="copy-badge" id="copy-badge" aria-live="polite">
+              <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span class="copy-label" id="copy-label">Copy</span>
+            </span>
+          </button>
+
+          <a class="contact-btn cv-btn" id="cv-download-btn" href="asset/cv.pdf" download="Arindam_Banerjee_CV.pdf" title="Download CV (PDF)">
+            <span class="btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </span>
+            <span class="btn-text">Download CV</span>
+          </a>
+        </div>
+
+        <!-- Gentle Scroll Down Cue to Studio Sticky Notes -->
+        <a class="contact-scroll-cue" href="#studio-notes" id="contact-scroll-cue" aria-label="Scroll down to studio sticky note board">
+          <span class="cue-pill">
+            <span class="cue-dot"></span>
+            <span class="cue-txt">Leave a sticky note below</span>
+            <span class="cue-arrow">&darr;</span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Dedicated Sticky Note Studio Section (Pure Black Background) -->
+    <section class="studio-notes-section" id="studio-notes">
+      <div class="wrap studio-notes-wrap">
+        <!-- Interactive "Leave A Sticky Note" Studio Desk -->
+        <div class="note-station-wrap" id="note-station-wrap">
+          <div class="note-station-header">
+            <h2 class="note-station-headline">Leave a sticky note</h2>
+            <p class="note-station-desc">Drop a thought, pitch an idea, or just say hello on the studio board.</p>
+          </div>
+
+          <div class="note-station-grid">
+            
+            <!-- Left: The Interactive Sticky Note Composer -->
+            <div class="note-composer-card" id="note-composer-card" data-color="yellow">
+              <div class="sticky-thumbtack"></div>
+              
+              <div class="composer-top">
+                <span class="composer-label">Drop a Sticky Note</span>
+                <div class="color-picker-row" aria-label="Select note color">
+                  <button type="button" class="color-swatch active" data-color="yellow" title="Neon Gold" style="--swatch: #f3e9a8;"></button>
+                  <button type="button" class="color-swatch" data-color="mint" title="Mint Glow" style="--swatch: #bdf2d5;"></button>
+                  <button type="button" class="color-swatch" data-color="peach" title="Cyber Peach" style="--swatch: #ffd6ba;"></button>
+                  <button type="button" class="color-swatch" data-color="dark" title="Stealth Carbon" style="--swatch: #2d2d2d;"></button>
+                </div>
+              </div>
+
+              <div class="mood-pill-selector" id="mood-pill-selector">
+                <button type="button" class="mood-pill active" data-mood="✦ Project Idea">✦ Project Idea</button>
+                <button type="button" class="mood-pill" data-mood="⚡ Quick Hello">⚡ Quick Hello</button>
+                <button type="button" class="mood-pill" data-mood="🔥 Feedback">🔥 Feedback</button>
+                <button type="button" class="mood-pill" data-mood="☕ Grab Coffee">☕ Grab Coffee</button>
+              </div>
+
+              <div class="note-input-wrap">
+                <textarea id="note-message-input" class="note-textarea" rows="4" maxlength="280" placeholder="Type your message, thought, or project brief here..."></textarea>
+                <div class="char-count"><span id="char-num">0</span>/280</div>
+              </div>
+
+              <div class="composer-bottom">
+                <div class="author-input-wrap">
+                  <input type="text" id="note-author-input" class="note-author" maxlength="40" placeholder="Your name or @handle (optional)">
+                </div>
+                <button type="button" class="pin-note-btn" id="pin-note-btn">
+                  <span>Pin to Board 📌</span>
+                </button>
+              </div>
+
+              <div class="composer-feedback" id="composer-feedback" aria-live="polite"></div>
+            </div>
+
+            <!-- Right: The Live Interactive Corkboard Wall -->
+            <div class="note-board-wall" id="note-board-wall" aria-label="Community & Visitor Notes">
+              <div class="board-topbar">
+                <div class="board-badge">
+                  <span class="pin-icon">📍</span>
+                  <span>Studio Corkboard &bull; Pinned Notes</span>
+                </div>
+                <span class="board-count" id="board-notes-count">0 notes pinned</span>
+              </div>
+
+              <div class="board-pins-container" id="board-pins-container">
+                <!-- Dynamically populated and stored via JS/localStorage -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="video-modal-backdrop" id="video-modal" aria-hidden="true">
+      <div class="modal-dialog" role="dialog" aria-modal="true" aria-label="Project details modal">
+        <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal" title="Close (Esc)">&times;</button>
+        
+        <!-- Left: Fixed Video Player (Does NOT scroll) -->
+        <div class="modal-video-col">
+          <div class="modal-video-wrapper">
+            <video id="modal-video-player" playsinline controls preload="auto">
+              <source src="" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- Right: Scrollable Case Study Explanation (Only this side scrolls) -->
+        <div class="modal-info-col" id="modal-info-col" tabindex="0">
+          <div id="modal-case-body">
+            <!-- Dynamic case study content injected via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p class="muted">Designed &amp; Animated by Arindam Banerjee &bull; Interactive motion &copy; 2026</p>
+    </footer>
+
+    <!-- Floating Email Copy Popover Card -->
+    <div class="email-popover-card" id="email-popover-card" role="dialog" aria-modal="false" aria-hidden="true" style="display: none;">
+      <div class="email-popover-arrow" id="email-popover-arrow"></div>
+      <div class="email-popover-inner">
+        <div class="email-popover-header">
+          <span class="email-popover-badge">Contact</span>
+          <button type="button" class="email-popover-close" id="email-popover-close" aria-label="Close email popup">&times;</button>
+        </div>
+        <div class="email-popover-body">
+          <div class="email-popover-chip" id="email-popover-chip" title="Click to copy email address" role="button" tabindex="0">
+            <span class="email-popover-dot"></span>
+            <span class="email-popover-addr" id="email-popover-addr">banerjee.clg@gmail.com</span>
+            <button type="button" class="email-popover-copy-btn" id="email-popover-copy-btn" aria-label="Copy email">
+              <svg class="copy-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span class="copy-btn-txt" id="email-popover-copy-txt">Copy</span>
+            </button>
+          </div>
+        </div>
+        <div class="email-popover-footer">
+          <a class="email-popover-mailto" id="email-popover-mailto" href="mailto:banerjee.clg@gmail.com">
+            <span>Open email app</span>
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Interactive Grid and Site Logic -->
+  <script src="js/grid.js"></script>
+</body>
+</html>
