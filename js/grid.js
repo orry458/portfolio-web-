@@ -713,7 +713,7 @@
     if (!composerCard || !pinsContainer) return;
 
     let currentColor = 'yellow';
-    let currentMood = '✦ Project Idea';
+    let currentMood = '⚡ Quick Hello';
 
     // Color Swatch Selection
     colorSwatches.forEach((swatch) => {
@@ -730,7 +730,7 @@
       pill.addEventListener('click', () => {
         moodPills.forEach((p) => p.classList.remove('active'));
         pill.classList.add('active');
-        currentMood = pill.dataset.mood || '✦ Project Idea';
+        currentMood = pill.dataset.mood || '⚡ Quick Hello';
       });
     });
 
@@ -741,16 +741,25 @@
       });
     }
 
-    // Storage Management & Notes Collection (Clean Board, No Default Sample Notes)
-    const STORAGE_KEY = 'arindam_studio_notes_v2';
-    const defaultNotes = [];
+    // Storage Management & Public Cloud Notes Collection
+    const STORAGE_KEY = 'arindam_studio_notes_v3';
+    const defaultNotes = [
+      {
+        id: 'note-welcome',
+        text: 'Welcome to my motion design studio! Feel free to leave a quick hello or feedback on this board. ✨',
+        author: 'Arindam Banerjee',
+        mood: '⚡ Quick Hello',
+        color: 'yellow',
+        rotation: -1.5
+      }
+    ];
 
     function getSavedNotes() {
       try {
         const data = localStorage.getItem(STORAGE_KEY);
         if (data) {
           const parsed = JSON.parse(data);
-          if (Array.isArray(parsed)) return parsed;
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
         }
       } catch (err) {}
       return defaultNotes;
@@ -788,16 +797,18 @@
         noteEl.style.transform = `rotate(${note.rotation || 0}deg)`;
         noteEl.setAttribute('tabindex', '0');
         noteEl.setAttribute('role', 'article');
-        noteEl.setAttribute('aria-label', `Note by ${note.author}: ${note.text}`);
+        const authorLabel = note.author && note.author.trim() ? note.author.trim() : '';
+        noteEl.setAttribute('aria-label', `Note${authorLabel ? ' by ' + authorLabel : ''}: ${note.text}`);
 
-        // Clean note card without timestamp
+        // Clean note card - do NOT print "Anonymous Friend"; omit author footer completely if no name given
         noteEl.innerHTML = `
           <div class="pinned-thumbtack"></div>
-          <span class="pinned-tag">${escapeHTML(note.mood || '✦ Note')}</span>
+          <span class="pinned-tag">${escapeHTML(note.mood || '⚡ Quick Hello')}</span>
           <p class="pinned-text">${escapeHTML(note.text)}</p>
+          ${authorLabel ? `
           <div class="pinned-footer">
-            <span class="pinned-author">${escapeHTML(note.author || 'Anonymous')}</span>
-          </div>
+            <span class="pinned-author">${escapeHTML(authorLabel)}</span>
+          </div>` : ''}
         `;
 
         pinsContainer.appendChild(noteEl);
@@ -813,11 +824,44 @@
         .replace(/'/g, '&#39;');
     }
 
+    // Public Cloud Sync: fetch all public pinned notes from serverless database
+    async function fetchPublicNotes(isBackground) {
+      try {
+        const response = await fetch('/api/notes', {
+          headers: { 'Accept': 'application/json' },
+          cache: 'no-cache'
+        });
+        if (response.ok) {
+          const cloudNotes = await response.json();
+          if (Array.isArray(cloudNotes) && cloudNotes.length > 0) {
+            notes = cloudNotes;
+            saveNotes(notes);
+            renderBoard();
+            return;
+          }
+        }
+      } catch (err) {
+        // Fall back gracefully to local notes if offline or in development
+      }
+      if (!isBackground) {
+        renderBoard();
+      }
+    }
+
+    // Initial render and public fetch
     renderBoard();
+    fetchPublicNotes();
+
+    // Auto-refresh notes periodically so other visitors' notes show up live
+    setInterval(() => {
+      if (!document.hidden) {
+        fetchPublicNotes(true);
+      }
+    }, 25000);
 
     // Pin Note Button Click Handler
     if (pinBtn && messageInput) {
-      pinBtn.addEventListener('click', () => {
+      pinBtn.addEventListener('click', async () => {
         const messageText = messageInput.value.trim();
         if (!messageText) {
           if (feedbackEl) {
@@ -828,8 +872,9 @@
           return;
         }
 
-        const authorName = (authorInput && authorInput.value.trim()) || 'Anonymous Friend';
-        const newId = 'note-' + Date.now();
+        // Clean author name: if blank, leave empty (never "Anonymous Friend")
+        const authorName = (authorInput && authorInput.value.trim()) || '';
+        const newId = 'note-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6);
         // Generate subtle organic tilt between -3.5 and +3.5 deg
         const randomRot = (Math.random() * 6.5 - 3.25).toFixed(1);
 
@@ -842,9 +887,9 @@
           rotation: parseFloat(randomRot)
         };
 
+        // 1. Optimistic UI: display immediately on corkboard
         notes.unshift(newNote);
-        // Keep at most 18 notes on board for performance
-        if (notes.length > 18) notes.pop();
+        if (notes.length > 36) notes.pop();
         saveNotes(notes);
         renderBoard(newId);
 
@@ -859,6 +904,26 @@
           setTimeout(() => {
             feedbackEl.textContent = '';
           }, 4500);
+        }
+
+        // 2. Persist to public cloud database for all visitors
+        try {
+          const res = await fetch('/api/notes', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newNote)
+          });
+          if (res.ok) {
+            const result = await res.json();
+            if (result && Array.isArray(result.notes)) {
+              notes = result.notes;
+              saveNotes(notes);
+              renderBoard();
+            }
+          }
+        } catch (postErr) {
+          // If offline, the note remains in local cache
+          console.warn('Note saved locally (offline mode):', postErr);
         }
       });
     }

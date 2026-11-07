@@ -1,0 +1,10 @@
+{
+  "name": "portfolio-web",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Arindam Banerjee Motion Design Portfolio",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
