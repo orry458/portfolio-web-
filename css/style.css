@@ -2585,6 +2585,472 @@ footer {
 }
 
 /* ==========================================================================
+   LAPTOP & HIGH-DPI DISPLAY SCALING (125% / 150% Windows Scaling & Laptops)
+   Provides the proportional 80% zoom look automatically on laptops
+   ========================================================================== */
+
+@media screen and (min-width: 821px) and (max-width: 1560px),
+       screen and (min-width: 821px) and (max-height: 880px) {
+  :root {
+    --sidebar-w: 232px;
+    --maxw: 1040px;
+  }
+
+  .wrap {
+    padding-left: clamp(20px, 3vw, 40px);
+    padding-right: clamp(20px, 3vw, 40px);
+  }
+
+  /* --- Sidebar Scaled Proportionally --- */
+  .sidebar {
+    padding: 24px 18px;
+  }
+  .sidebar-id {
+    margin-bottom: 16px;
+  }
+  .avatar-glow-wrap {
+    width: 105px;
+    height: 105px;
+    margin-bottom: 12px;
+  }
+  .avatar-photo {
+    width: 105px;
+    height: 105px;
+  }
+  .sidebar-id .name {
+    font-size: 18px;
+  }
+  .sidebar-id .role {
+    font-size: 11.5px;
+  }
+  .sidebar-id .local-time {
+    font-size: 10.5px;
+    margin-top: 4px;
+  }
+  .sidebar-nav {
+    gap: 4px;
+    margin-top: 10px;
+  }
+  .nav-item {
+    padding: 7px 12px;
+    font-size: 12.5px;
+    gap: 9px;
+  }
+  .nav-item svg {
+    width: 14px;
+    height: 14px;
+  }
+  .sidebar-socials {
+    padding-top: 12px;
+    gap: 8px;
+  }
+  .sidebar-social-link {
+    width: 32px;
+    height: 32px;
+  }
+  .sidebar-social-link svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  /* --- Hero Section --- */
+  .hero-outer {
+    height: calc(100vh - 44px);
+    min-height: calc(100vh - 44px);
+  }
+  .hero-headline {
+    font-size: clamp(32px, 4.4vw, 54px);
+    line-height: 1.05;
+    margin-bottom: 14px;
+    max-width: 720px;
+  }
+  .hero .location {
+    font-size: 12px;
+    margin-bottom: 14px;
+    gap: 6px;
+  }
+  .hero .location svg {
+    width: 13px;
+    height: 13px;
+  }
+  .hero .bio {
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+    max-width: 580px;
+  }
+  .hero-actions .link-pill {
+    padding: 9px 18px;
+    font-size: 12.5px;
+  }
+
+  /* --- Skills Marquee --- */
+  .skills-marquee-section {
+    padding: 12px 0;
+  }
+  .skill-pill {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+
+  /* --- Portfolio Projects --- */
+  .portfolio-section {
+    padding: 40px 0 70px;
+  }
+  .section-head {
+    margin-bottom: 30px;
+  }
+  .section-head h2 {
+    font-size: clamp(24px, 3vw, 32px);
+  }
+  .projects-list {
+    gap: 28px;
+  }
+  .project-card,
+  .project-card.flip {
+    padding: 26px 24px;
+    border-radius: 20px;
+    gap: clamp(22px, 3.5vw, 42px);
+  }
+  .card-title {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .card-specs {
+    margin-bottom: 14px;
+  }
+  .spec-row {
+    font-size: 11px;
+    padding: 3px 0;
+  }
+  .card-actions .view-work-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  /* --- About Section (Single Screen Precision) --- */
+  .about-outer {
+    min-height: 100vh;
+    padding: clamp(16px, 2.5vh, 32px) 0;
+  }
+  .about-grid {
+    gap: clamp(24px, 3.5vw, 44px);
+    grid-template-columns: 1.15fr 0.95fr;
+  }
+  .section-badge {
+    font-size: 10.5px;
+    padding: 3px 10px;
+    margin-bottom: 10px;
+  }
+  .about-heading {
+    font-size: clamp(24px, 3vw, 36px);
+    margin-bottom: 12px;
+    line-height: 1.12;
+  }
+  .about-body {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .about-p {
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .about-p.lead {
+    font-size: 14.5px;
+  }
+  .about-chips {
+    gap: 10px;
+  }
+  .about-chip {
+    padding: 8px 14px;
+    border-radius: 12px;
+    min-width: 110px;
+  }
+  .chip-number {
+    font-size: 20px;
+  }
+  .chip-label {
+    font-size: 10px;
+  }
+
+  /* Funky Polaroids (Scaled 80%) */
+  .polaroid-cluster {
+    height: 320px;
+    max-width: 350px;
+  }
+  .polaroid-card {
+    width: 190px;
+    padding: 9px 9px 24px;
+    border-radius: 3px;
+  }
+  .polaroid-tape {
+    width: 52px;
+    height: 18px;
+    top: -9px;
+  }
+  .polaroid-1 {
+    top: -4px;
+    left: 8px;
+  }
+  .polaroid-2 {
+    top: 60px;
+    right: 8px;
+  }
+
+  /* About Tools Bar & Basketball Hoop */
+  .about-tools-wrap {
+    margin-top: 14px;
+    padding-top: 12px;
+  }
+  .about-tools-bar {
+    min-height: 58px;
+    gap: 14px;
+  }
+  .tools-label {
+    font-size: 10.5px;
+    margin-bottom: 4px;
+  }
+  .tool-badge {
+    padding: 5px 11px;
+    font-size: 11px;
+    border-radius: 999px;
+  }
+  .hoop-stage-mono {
+    width: 82px;
+    height: 75px;
+  }
+  .hoop-backboard-mono {
+    width: 68px;
+    height: 48px;
+  }
+  .hoop-target-mono {
+    width: 30px;
+    height: 22px;
+  }
+  .hoop-rim-mono {
+    width: 44px;
+    height: 13px;
+  }
+  .hoop-net-mono {
+    width: 36px;
+    height: 30px;
+  }
+
+  /* --- Contact / "Let's Design" (Single Screen Precision) --- */
+  .contact-section {
+    height: 100vh;
+    min-height: 100vh;
+  }
+  .contact-headline {
+    font-size: clamp(38px, 5.5vw, 74px);
+    line-height: 1.0;
+  }
+  .contact-headline .outline {
+    -webkit-text-stroke-width: 1.5px;
+  }
+  .contact-actions-deck {
+    margin-top: clamp(28px, 6.5vh, 65px);
+    gap: 14px;
+  }
+  .contact-btn {
+    padding: 12px 22px;
+    font-size: 13px;
+  }
+  .paper-plane {
+    width: 38px;
+    height: 38px;
+  }
+  .paper-plane#paper-plane-2 {
+    width: 32px;
+    height: 32px;
+  }
+  .contact-scroll-cue {
+    bottom: 14px;
+  }
+  .cue-txt {
+    font-size: 10.5px;
+  }
+  .cue-arrow {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* --- Studio Notes Section --- */
+  .studio-notes-section {
+    padding: 40px 0 60px;
+  }
+  .note-station-header {
+    margin-bottom: 22px;
+  }
+  .note-station-headline {
+    font-size: 26px;
+  }
+  .note-station-desc {
+    font-size: 13px;
+  }
+  .note-station-grid {
+    gap: 26px;
+  }
+  .note-composer-card {
+    padding: 20px;
+  }
+  .pinned-note {
+    padding: 14px 14px 18px;
+    font-size: 13px;
+  }
+  .pinned-tag {
+    font-size: 10.5px;
+  }
+
+  /* --- Video Modal Dialog --- */
+  .modal-dialog {
+    width: min(92vw, 1080px);
+    height: min(84vh, 620px);
+    border-radius: 18px;
+  }
+  .modal-info-col {
+    padding: 26px 28px;
+  }
+  .modal-title {
+    font-size: 24px;
+  }
+}
+
+/* ==========================================================================
+   COMPACT LAPTOPS & SHORT VIEWPORTS (Height <= 720px / 1366x768 / 150% Scale)
+   ========================================================================== */
+
+@media screen and (min-width: 821px) and (max-height: 720px) {
+  :root {
+    --sidebar-w: 210px;
+  }
+
+  .sidebar {
+    padding: 16px 14px;
+  }
+  .avatar-glow-wrap {
+    width: 78px;
+    height: 78px;
+    margin-bottom: 8px;
+  }
+  .avatar-photo {
+    width: 78px;
+    height: 78px;
+  }
+  .sidebar-id .name {
+    font-size: 16px;
+  }
+  .sidebar-id .role {
+    font-size: 10.5px;
+  }
+  .sidebar-nav {
+    gap: 3px;
+  }
+  .nav-item {
+    padding: 5px 9px;
+    font-size: 11.5px;
+  }
+  .hero-headline {
+    font-size: clamp(28px, 3.6vw, 44px);
+    margin-bottom: 10px;
+  }
+  .hero .bio {
+    font-size: 13.5px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .hero .location {
+    margin-bottom: 10px;
+    font-size: 11.5px;
+  }
+  .about-outer {
+    padding: 12px 0;
+  }
+  .about-heading {
+    font-size: clamp(20px, 2.4vw, 28px);
+    margin-bottom: 8px;
+  }
+  .about-body {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .about-p {
+    font-size: 12.5px;
+    line-height: 1.48;
+  }
+  .about-p.lead {
+    font-size: 13px;
+  }
+  .about-chips {
+    gap: 8px;
+  }
+  .about-chip {
+    padding: 6px 10px;
+  }
+  .chip-number {
+    font-size: 17px;
+  }
+  .polaroid-cluster {
+    height: 250px;
+    max-width: 280px;
+  }
+  .polaroid-card {
+    width: 150px;
+    padding: 7px 7px 18px;
+  }
+  .polaroid-2 {
+    top: 48px;
+  }
+  .about-tools-wrap {
+    margin-top: 10px;
+    padding-top: 8px;
+  }
+  .about-tools-bar {
+    min-height: 48px;
+  }
+  .hoop-stage-mono {
+    width: 68px;
+    height: 60px;
+  }
+  .contact-headline {
+    font-size: clamp(32px, 4.4vw, 54px);
+  }
+  .contact-actions-deck {
+    margin-top: clamp(16px, 4vh, 36px);
+  }
+  .contact-btn {
+    padding: 10px 18px;
+    font-size: 12px;
+  }
+}
+
+/* Splash Screen Compact Scaling */
+@media screen and (max-height: 800px) {
+  .splash-stage {
+    width: min(280px, 80vw);
+    height: 180px;
+    margin-bottom: 16px;
+  }
+  .splash-name {
+    font-size: 26px;
+    margin-bottom: 4px;
+  }
+  .splash-role {
+    font-size: 12px;
+    margin-bottom: 24px;
+  }
+  .splash-enter-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+}
+
+/* ==========================================================================
    MOBILE & RESPONSIVE BREAKPOINTS
    ========================================================================== */
 
