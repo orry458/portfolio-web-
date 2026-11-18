@@ -16,24 +16,13 @@ export default async (req, context) => {
   const store = getStore("studio_notes");
   const KEY = "pinned_notes";
 
-  const starterNotes = [
-    {
-      id: "note-welcome",
-      text: "Welcome to my motion design studio! Feel free to leave a quick hello or feedback on this board. ✨",
-      author: "Arindam Banerjee",
-      mood: "⚡ Quick Hello",
-      color: "yellow",
-      rotation: -1.5,
-      createdAt: 1730980000000
-    }
-  ];
-
   if (req.method === "GET") {
     try {
       let notes = await store.get(KEY, { type: "json" });
-      if (!notes || !Array.isArray(notes)) {
-        notes = starterNotes;
-        await store.setJSON(KEY, notes);
+      if (Array.isArray(notes)) {
+        notes = notes.filter(n => n && n.id !== "note-welcome");
+      } else {
+        notes = [];
       }
       return new Response(JSON.stringify(notes), {
         headers: {
@@ -44,7 +33,7 @@ export default async (req, context) => {
       });
     } catch (err) {
       console.error("Blobs read error:", err);
-      return new Response(JSON.stringify(starterNotes), {
+      return new Response(JSON.stringify([]), {
         headers: corsHeaders,
         status: 200
       });
@@ -65,12 +54,10 @@ export default async (req, context) => {
       try {
         const existing = await store.get(KEY, { type: "json" });
         if (Array.isArray(existing)) {
-          notes = existing;
-        } else {
-          notes = starterNotes;
+          notes = existing.filter(n => n && n.id !== "note-welcome");
         }
       } catch (e) {
-        notes = starterNotes;
+        notes = [];
       }
 
       const authorClean = body.author && typeof body.author === "string" ? body.author.trim().slice(0, 40) : "";

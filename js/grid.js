@@ -742,24 +742,17 @@
     }
 
     // Storage Management & Public Cloud Notes Collection
-    const STORAGE_KEY = 'arindam_studio_notes_v3';
-    const defaultNotes = [
-      {
-        id: 'note-welcome',
-        text: 'Welcome to my motion design studio! Feel free to leave a quick hello or feedback on this board. ✨',
-        author: 'Arindam Banerjee',
-        mood: '⚡ Quick Hello',
-        color: 'yellow',
-        rotation: -1.5
-      }
-    ];
+    const STORAGE_KEY = 'arindam_studio_notes_v4';
+    const defaultNotes = [];
 
     function getSavedNotes() {
       try {
         const data = localStorage.getItem(STORAGE_KEY);
         if (data) {
           const parsed = JSON.parse(data);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          if (Array.isArray(parsed)) {
+            return parsed.filter((n) => n && n.id !== 'note-welcome');
+          }
         }
       } catch (err) {}
       return defaultNotes;
@@ -767,7 +760,8 @@
 
     function saveNotes(notesArr) {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(notesArr));
+        const cleanArr = Array.isArray(notesArr) ? notesArr.filter((n) => n && n.id !== 'note-welcome') : [];
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(cleanArr));
       } catch (err) {}
     }
 
@@ -833,8 +827,8 @@
         });
         if (response.ok) {
           const cloudNotes = await response.json();
-          if (Array.isArray(cloudNotes) && cloudNotes.length > 0) {
-            notes = cloudNotes;
+          if (Array.isArray(cloudNotes)) {
+            notes = cloudNotes.filter((n) => n && n.id !== 'note-welcome');
             saveNotes(notes);
             renderBoard();
             return;
